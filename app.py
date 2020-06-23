@@ -9,8 +9,10 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import *
-import string
+import os
 
+
+count = os.getenv('count')
 
 app = Flask(__name__)
 
@@ -39,6 +41,21 @@ def callback():
     except InvalidSignatureError:
         abort(400)
     return 'OK'
+
+
+@handler.add(MessageEvent, message=TextMessage)
+def handle_message(event):
+    print("event.reply_token:", event.reply_token)
+    print("event.message.text:", event.message.text)
+
+    if "查看數字" in event.message.text:
+        
+        content = count
+
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=content))
+        return 0
 
 
 
