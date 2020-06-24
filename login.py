@@ -74,7 +74,7 @@ if __name__ == '__main__':
             logging.warning('warning message')
             count += 1
 
-        if count >= 0:
+        if count >= 2:
             logging.warning('warning message')
             send_message()
 
