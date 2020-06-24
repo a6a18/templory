@@ -76,6 +76,6 @@ if __name__ == '__main__':
 
         if count >= 0:
             logging.warning('warning message')
-            # send_message()
+            send_message()
 
         time.sleep(30)
