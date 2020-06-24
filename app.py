@@ -10,6 +10,7 @@ from linebot.exceptions import (
 )
 from linebot.models import *
 import os
+import json
 
 
 count = os.getenv('count')
@@ -25,6 +26,25 @@ header = {
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36',
     'Content-Type': 'application/json'
 }
+
+
+def send_message():
+    url = 'https://api.line.me/v2/bot/message/push'
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer d9vni23HMrx9az1UDeIfbJakTOAaVTslK4tqNyWxSRgmj6zTaswif5tegG2tvqOnCBtxnSPKe6nRfXe4M17s7olhVeP32AThNIR+T616SLS771J9irXZhgUduz3sr83rNOGg7QcpH0hFogGJyOExhgdB04t89/1O/w1cDnyilFU='
+    }
+    data = {
+        "to": "Uf1df2ac474299d93846191f0135f95df",
+        "messages": [
+            {
+                "type": "text",
+                "text": "it 邦幫忙鐵人賽"
+            }
+        ]
+    }
+
+    requests.post(url=url, headers=headers, data=json.dumps(data))
 
 
 # 監聽所有來自 /callback 的 Post Request
@@ -56,6 +76,11 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text=content))
         return 0
+
+    if "推送" in event.message.test:
+        send_message()
+
+
 
 
 
