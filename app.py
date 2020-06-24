@@ -77,7 +77,7 @@ def handle_message(event):
             TextSendMessage(text=content))
         return 0
 
-    if "推送" in event.message.test:
+    if "推送" in event.message.text:
         send_message()
 
 
