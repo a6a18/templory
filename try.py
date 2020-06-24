@@ -30,25 +30,5 @@ def login():
         return True
 
 
-
-def send_message():
-    url = 'https://api.line.me/v2/bot/message/push'
-    headers = {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer d9vni23HMrx9az1UDeIfbJakTOAaVTslK4tqNyWxSRgmj6zTaswif5tegG2tvqOnCBtxnSPKe6nRfXe4M17s7olhVeP32AThNIR+T616SLS771J9irXZhgUduz3sr83rNOGg7QcpH0hFogGJyOExhgdB04t89/1O/w1cDnyilFU='
-    }
-    data = {
-        "to": "Uf1df2ac474299d93846191f0135f95df",
-        "messages": [
-            {
-                "type": "text",
-                "text": "it 邦幫忙鐵人賽"
-            }
-        ]
-    }
-
-    requests.post(url=url, headers=headers, data=json.dumps(data))
-
-
 if __name__ == '__main__':
-    send_message()
+    login()
