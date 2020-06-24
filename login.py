@@ -1,6 +1,15 @@
 import requests
 import json
 import time
+import logging
+import os
+
+
+FORMAT = '%(asctime)s %(levelname)s: %(message)s'
+
+logging.basicConfig(level=logging.INFO,
+                    filename='login.log',
+                    format=FORMAT)
 
 
 def send_message():
@@ -62,9 +71,11 @@ if __name__ == '__main__':
             count = 0
 
         if result is False:
+            logging.warning('warning message')
             count += 1
 
-        if count >= 2:
-            send_message()
+        if count >= 0:
+            logging.warning('warning message')
+            # send_message()
 
         time.sleep(30)
