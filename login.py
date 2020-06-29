@@ -65,19 +65,22 @@ if __name__ == '__main__':
     count = 0
     start_time = time.time()
     while True:
-        n = random.randint(1, 6)
-        now_time = time.time()
-        result = login(n)
+        try:
+            n = random.randint(1, 6)
+            now_time = time.time()
+            result = login(n)
 
-        if (now_time - start_time) > 300:  # 5分鐘
-            count = 0
+            if (now_time - start_time) > 300:  # 5分鐘
+                count = 0
 
-        if result is False:
-            logging.warning('twproxy{} warning message'.format(n))
-            count += 1
+            if result == False:
+                logging.warning('twproxy{} warning message'.format(n))
+                count += 1
 
-        if count >= 2:
-            logging.warning('twproxy{} warning message'.format(n))
-            send_message()
+            if count >= 2:
+                logging.warning('twproxy{} warning message'.format(n))
+                send_message()
 
-        time.sleep(30)
+            time.sleep(30)
+        except:
+            pass
