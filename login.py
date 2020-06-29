@@ -3,6 +3,7 @@ import json
 import time
 import logging
 import os
+import random
 
 
 FORMAT = '%(asctime)s %(levelname)s: %(message)s'
@@ -31,8 +32,8 @@ def send_message():
     requests.post(url=url, headers=headers, data=json.dumps(data))
 
 
-def login():
-    url = "https://twproxy01.svc.litv.tv//cdi/v2/rpc"
+def login(proxy_n):
+    url = "https://twproxy0{}.svc.litv.tv//cdi/v2/rpc".format(proxy_n)
 
     data = {
         "jsonrpc": "2.0",
@@ -64,18 +65,19 @@ if __name__ == '__main__':
     count = 0
     start_time = time.time()
     while True:
+        n = random.randint(1, 6)
         now_time = time.time()
-        result = login()
+        result = login(n)
 
         if (now_time - start_time) > 300:  # 5分鐘
             count = 0
 
         if result is False:
-            logging.warning('warning message')
+            logging.warning('twproxy{} warning message'.format(n))
             count += 1
 
         if count >= 2:
-            logging.warning('warning message')
+            logging.warning('twproxy{} warning message'.format(n))
             send_message()
 
         time.sleep(30)
